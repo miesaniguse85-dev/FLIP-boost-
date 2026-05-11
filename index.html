@@ -964,6 +964,23 @@ footer {
 }
 .lang-toggle:hover, .lang-toggle.am { border-color:var(--gold); color:var(--gold2); }
 
+
+/* ════ DELIVERY TYPE ════ */
+.delivery-type-row {
+  display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;
+}
+.del-type-btn {
+  padding:14px 10px; border:1px solid var(--border2); background:var(--bg2);
+  cursor:pointer; text-align:center; transition:all .2s;
+}
+.del-type-btn.on { border-color:var(--gold); background:rgba(196,144,42,.08); }
+.del-type-title {
+  font-family:'DM Mono',monospace; font-size:.5rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--t1); margin-bottom:4px;
+}
+.del-type-sub { font-style:italic; color:var(--t3); font-size:.85rem; }
+.del-type-price { font-family:'Cinzel',serif; font-size:1rem; color:var(--gold2); margin-top:4px; }
+
 </style>
 </head>
 <body>
@@ -1516,6 +1533,20 @@ footer {
             <div class="co-section-title">Your Details</div>
             <div class="field"><label>Full Name</label><input type="text" id="coName" placeholder="Your full name" required></div>
             <div class="field"><label>Phone Number</label><input type="tel" id="coPhone" placeholder="+251 9__ ___ ___" required></div>
+
+            <div class="co-section-title" style="margin-top:8px;">Delivery Type</div>
+            <div class="delivery-type-row" id="deliveryTypeRow">
+              <div class="del-type-btn on" onclick="selDeliveryType(this,'instant')" id="btnInstant">
+                <div class="del-type-title">⚡ Instant</div>
+                <div class="del-type-sub">Same day delivery</div>
+                <div class="del-type-price" id="instantPrice">ETB 80+</div>
+              </div>
+              <div class="del-type-btn" onclick="selDeliveryType(this,'scheduled')" id="btnScheduled">
+                <div class="del-type-title">📦 48hr</div>
+                <div class="del-type-sub">Scheduled delivery</div>
+                <div class="del-type-price">FREE 🎁</div>
+              </div>
+            </div>
 
             <div class="co-section-title" style="margin-top:8px;">Delivery Location</div>
             <div class="field" style="position:relative;">
@@ -2176,6 +2207,23 @@ function setDest(lat,lng){
   calcDelivery(lat,lng);
 }
 
+let deliveryType = 'instant';
+
+function selDeliveryType(el, type){
+  document.querySelectorAll('.del-type-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  deliveryType = type;
+  // Recalculate if location already set
+  if(coLat) calcDelivery(coLat, coLng);
+  // Update summary
+  if(type === 'scheduled'){
+    const sd = document.getElementById('sumDelivery');
+    const st = document.getElementById('sumTotal');
+    if(sd) sd.textContent = 'FREE (48hr)';
+    if(st) st.textContent = 'ETB ' + (cart.price*cart.qty).toLocaleString();
+  }
+}
+
 function calcDelivery(lat,lng){
   const R=6371, dLat=(lat-ORIGIN.lat)*Math.PI/180, dLng=(lng-ORIGIN.lng)*Math.PI/180;
   const a=Math.sin(dLat/2)**2+Math.cos(ORIGIN.lat*Math.PI/180)*Math.cos(lat*Math.PI/180)*Math.sin(dLng/2)**2;
@@ -2194,7 +2242,22 @@ function calcDelivery(lat,lng){
     if(id('sumTotal')) id('sumTotal').textContent='ETB '+(cart.price*cart.qty).toLocaleString()+' + delivery';
     return;
   }
+  // Scheduled = always free
+  if(deliveryType === 'scheduled'){
+    fee = 0;
+    if(id('feeDisp')) id('feeDisp').textContent = 'FREE 🎁 (48hr)';
+    if(id('sumDelivery')) id('sumDelivery').textContent = 'FREE (48hr)';
+    if(id('sumTotal')) id('sumTotal').textContent = 'ETB ' + (cart.price*cart.qty).toLocaleString();
+    if(id('deliveryRow')) id('deliveryRow').style.display = 'flex';
+    if(id('distDisp')) id('distDisp').textContent = road.toFixed(1)+' km';
+    if(id('mapHint')) id('mapHint').textContent = '✓ Location set · '+road.toFixed(1)+' km from us';
+    return;
+  }
+  // Instant: free if 3kg+, else 80 + 20/km
   fee = isFree ? 0 : MIN_FEE + Math.round(road * RATE);
+  // Update instant price preview
+  const ip = document.getElementById('instantPrice');
+  if(ip) ip.textContent = isFree ? 'FREE 🎁' : 'ETB '+(MIN_FEE + Math.round(road*RATE));
   if(id('feeDisp')) id('feeDisp').textContent=isFree?'FREE 🎁':'ETB '+fee;
   if(id('sumDelivery')) id('sumDelivery').textContent=isFree?'FREE':'ETB '+fee;
   if(id('sumTotal')) id('sumTotal').textContent='ETB '+((cart.price*cart.qty)+fee).toLocaleString();
@@ -2355,7 +2418,8 @@ async function submitOrder(e){
   const total=document.getElementById('sumTotal').textContent;
   const orderId=genOrderId();
   if(btn){btn.textContent='Sending…';btn.disabled=true;}
-  const msg="🆕 NEW ORDER — FLIP BOOST\n\n📦 Order ID: "+orderId+"\n👤 Customer: "+name+"\n📞 Phone: "+phone+"\n📍 Address: "+addr+"\n🗺 GPS: "+coLat.toFixed(5)+", "+coLng.toFixed(5)+"\n\n☕ Product: Guji Natural\n⚖️ Size: "+detail+"\n🔢 Qty: "+cart.qty+"\n\n💳 Payment: "+selectedPayment+"\n💰 Subtotal: ETB "+(cart.price*cart.qty).toLocaleString()+"\n🚚 Delivery: "+fee+"\n💵 TOTAL: "+total;
+  const msg="🆕 NEW ORDER — FLIP BOOST\n\n📦 Order ID: "+orderId+
+    "\n🚚 Delivery: "+(deliveryType==='instant'?'⚡ Instant':'📦 48hr Scheduled')+"\n👤 Customer: "+name+"\n📞 Phone: "+phone+"\n📍 Address: "+addr+"\n🗺 GPS: "+coLat.toFixed(5)+", "+coLng.toFixed(5)+"\n\n☕ Product: Guji Natural\n⚖️ Size: "+detail+"\n🔢 Qty: "+cart.qty+"\n\n💳 Payment: "+selectedPayment+"\n💰 Subtotal: ETB "+(cart.price*cart.qty).toLocaleString()+"\n🚚 Delivery: "+fee+"\n💵 TOTAL: "+total;
   try{
     await fetch("https://api.telegram.org/bot"+TG_BOT_TOKEN+"/sendMessage",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:TG_CHAT_ID,text:msg})});
   }catch(err){

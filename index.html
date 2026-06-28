@@ -2371,9 +2371,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
   html[data-image-fit-mode^="desktop"] .price-sec .pbg.auto-fit-bg,
   html[data-image-fit-mode^="desktop"] .price-sec .price-bg.auto-fit-bg,
   html[data-image-fit-mode^="desktop"] .price-sec .price-bg-top.auto-fit-bg,
-  html[data-image-fit-mode^="desktop"] .price-sec .price-bg-bottom.auto-fit-bg,
-  html[data-image-fit-mode^="desktop"] .journey-sec .journey-bg.auto-fit-bg,
-  html[data-image-fit-mode^="desktop"] .farm-sec .farm-bg.auto-fit-bg {
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg-bottom.auto-fit-bg {
     background-image:var(--bg-img) !important;
   }
 
@@ -2388,9 +2386,14 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
 
   html[data-image-fit-mode^="desktop"] .journey-sec .journey-bg.auto-fit-bg,
   html[data-image-fit-mode^="desktop"] .farm-sec .farm-bg.auto-fit-bg {
-    background-size:cover !important;
-    background-position:center center !important;
+    background-image:
+      linear-gradient(to top, rgba(8,6,4,.70), rgba(8,6,4,.18) 45%, rgba(8,6,4,.34)),
+      var(--bg-img),
+      var(--bg-img) !important;
+    background-size:100% 100%, contain, cover !important;
+    background-position:center center, center center, center center !important;
     background-repeat:no-repeat !important;
+    background-color:#080604 !important;
   }
 }
 
@@ -4627,8 +4630,13 @@ function syncStickyBackgroundVars(){
     const inlineBg = el.style.backgroundImage;
     if(inlineBg && inlineBg !== 'none'){
       el.style.setProperty('--bg-img', inlineBg);
-      // FIX: keep real photo/bag images above older desktop gradient overrides.
-      el.style.setProperty('background-image', inlineBg, 'important');
+      // FIX: keep price bag images above older desktop gradient overrides.
+      // Journey/Farm use CSS multi-layer fit: contained real photo over cover fill.
+      if(el.matches('.pbg,.price-bg,.price-bg-top,.price-bg-bottom')){
+        el.style.setProperty('background-image', inlineBg, 'important');
+      } else {
+        el.style.setProperty('background-image', inlineBg);
+      }
     }
   });
 }

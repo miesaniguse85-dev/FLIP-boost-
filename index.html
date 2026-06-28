@@ -2366,6 +2366,34 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
   display:none;
 }
 
+/* FIX: restore real sticky photos over old desktop gradient background experiments. */
+@media (min-width:1024px) {
+  html[data-image-fit-mode^="desktop"] .price-sec .pbg.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg-top.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg-bottom.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .journey-sec .journey-bg.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .farm-sec .farm-bg.auto-fit-bg {
+    background-image:var(--bg-img) !important;
+  }
+
+  html[data-image-fit-mode^="desktop"] .price-sec .pbg.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg-top.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .price-sec .price-bg-bottom.auto-fit-bg {
+    background-size:contain !important;
+    background-position:center right !important;
+    background-repeat:no-repeat !important;
+  }
+
+  html[data-image-fit-mode^="desktop"] .journey-sec .journey-bg.auto-fit-bg,
+  html[data-image-fit-mode^="desktop"] .farm-sec .farm-bg.auto-fit-bg {
+    background-size:cover !important;
+    background-position:center center !important;
+    background-repeat:no-repeat !important;
+  }
+}
+
 .fb-svg-defs {
   position:absolute;
   width:0;
@@ -4599,6 +4627,8 @@ function syncStickyBackgroundVars(){
     const inlineBg = el.style.backgroundImage;
     if(inlineBg && inlineBg !== 'none'){
       el.style.setProperty('--bg-img', inlineBg);
+      // FIX: keep real photo/bag images above older desktop gradient overrides.
+      el.style.setProperty('background-image', inlineBg, 'important');
     }
   });
 }

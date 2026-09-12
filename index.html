@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="prices-pending">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.prices-pending .price-amount[data-size], .prices-pending #phPrice,
+.prices-pending .sz-p, .prices-pending #totalDisp, .prices-pending #selectedSizeNote,
+.prices-pending #sumPrice, .prices-pending #sumSubtotal, .prices-pending #sumTotal { visibility:hidden; }
+.prices-pending #shopOrderNowBtn { visibility:hidden; }
+.catalog-status { padding:12px 18px; color:#f2d79b; background:#211b11; font-size:15px; }
+.catalog-status button { margin-left:12px; padding:8px 12px; cursor:pointer; }
+.checkout-options { margin:16px 0; border:1px solid #887044; padding:14px; }
+.checkout-options summary { cursor:pointer; color:#f2d79b; font-size:16px; }
+.checkout-options[open] summary { margin-bottom:16px; }
+</style>
 <title>FLIP BOOST — Guji Single-Origin Ethiopian Coffee</title>
 
 <!-- ══ SEO & social ══ -->
@@ -2420,6 +2431,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
 </style>
 </head>
 <body>
+<div id="catalogStatus" class="catalog-status" role="status" aria-live="polite"><span id="catalogStatusText">Loading current prices… / ወቅታዊ ዋጋ እየተጫነ ነው…</span><button type="button" id="catalogRetry" hidden onclick="loadCommerceCatalog()">Retry / እንደገና ሞክር</button></div>
 <svg class="fb-svg-defs" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="icon-jebena" viewBox="0 0 64 64">
@@ -2659,7 +2671,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         <div class="price-slide active" id="pslide-0">
           <span class="price-tag">01 / 04</span>
           <div class="price-size">250 G</div>
-          <span class="price-amount">ETB 525</span>
+          <span class="price-amount" data-size="250g">ETB 525</span>
           <span class="price-tagline">Perfect for Home Brewers</span>
           <p class="price-desc">Enough for ~12 cups. Beans or powder.</p>
           <a class="price-cta" onclick="nav('shop',true,{size:'250g'});return false;" href="#shop">ORDER 250 G →</a>
@@ -2667,7 +2679,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         <div class="price-slide" id="pslide-1">
           <span class="price-tag">01 / 04</span>
           <div class="price-size">250 G</div>
-          <span class="price-amount">ETB 525</span>
+          <span class="price-amount" data-size="250g">ETB 525</span>
           <span class="price-tagline">Brewing Guide Included</span>
           <p class="price-desc">Jebena · Moka Pot · Espresso — instructions on every bag.</p>
           <a class="price-cta" onclick="nav('shop',true,{size:'250g'});return false;" href="#shop">ORDER NOW →</a>
@@ -2675,7 +2687,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         <div class="price-slide" id="pslide-2">
           <span class="price-tag">02 / 04</span>
           <div class="price-size">500 G</div>
-          <span class="price-amount">ETB 1,000</span>
+          <span class="price-amount" data-size="500g">ETB 1,000</span>
           <span class="price-tagline">Great for Regular Drinkers</span>
           <p class="price-desc">A month of great coffee. Most popular.</p>
           <a class="price-cta" onclick="nav('shop',true,{size:'500g'});return false;" href="#shop">ORDER 500 G →</a>
@@ -2683,7 +2695,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         <div class="price-slide" id="pslide-3">
           <span class="price-tag">02 / 04</span>
           <div class="price-size">500 G</div>
-          <span class="price-amount">ETB 1,000</span>
+          <span class="price-amount" data-size="500g">ETB 1,000</span>
           <span class="price-tagline">Brewing Guide Included</span>
           <p class="price-desc">Jebena · Moka Pot · Espresso — instructions on every bag.</p>
           <a class="price-cta" onclick="nav('shop',true,{size:'500g'});return false;" href="#shop">ORDER NOW →</a>
@@ -2691,7 +2703,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         <div class="price-slide" id="pslide-4">
           <span class="price-tag">03 / 04</span>
           <div class="price-size">1 KG</div>
-          <span class="price-amount">ETB 1,900</span>
+          <span class="price-amount" data-size="1kg">ETB 1,900</span>
           <span class="price-tagline">Best Value</span>
           <p class="price-desc">Free delivery above 3kg.</p>
           <a class="price-cta" onclick="nav('shop',true,{size:'1kg'});return false;" href="#shop">ORDER 1 KG →</a>
@@ -2699,7 +2711,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         <div class="price-slide" id="pslide-5">
           <span class="price-tag">03 / 04</span>
           <div class="price-size">1 KG</div>
-          <span class="price-amount">ETB 1,900</span>
+          <span class="price-amount" data-size="1kg">ETB 1,900</span>
           <span class="price-tagline">Brewing Guide Included</span>
           <p class="price-desc">Jebena · Moka Pot · Espresso — instructions on every bag.</p>
           <a class="price-cta" onclick="nav('shop',true,{size:'1kg'});return false;" href="#shop">ORDER NOW →</a>
@@ -3127,7 +3139,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
 
     <div class="form-tg-divider fi">
       <p>Prefer to message directly?</p>
-      <a href="https://t.me/flipboostcoffee?start=cafe-pricing" target="_blank" class="btn btn-tg">✈ Chat on Telegram</a>
+      <a href="https://t.me/+251717174235" target="_blank" class="btn btn-tg">✈ Chat on Telegram</a>
     </div>
   </div>
 </div>
@@ -3151,6 +3163,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
             <div class="field"><label>Full Name</label><input type="text" id="coName" placeholder="Your full name" required></div>
             <div class="field"><label>Phone Number</label><input type="tel" id="coPhone" placeholder="+251 9__ ___ ___" oninput="scheduleCustomerVerify()" onblur="verifyCustomerId()" required></div>
 
+            <details class="checkout-options" id="checkoutOptions"><summary id="checkoutOptionsSummary">Customer ID or partner code (optional)</summary>
             <div class="commerce-card">
               <div id="customerIdCompact">
                 <div class="commerce-title">Have a Flip Boost Customer ID?</div>
@@ -3189,6 +3202,7 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
               <div class="commerce-status" id="partnerCodeStatus">Enter the code of the Flip Boost salesperson or partner who helped you. Leave blank if none.</div>
             </div>
 
+            </details>
             <div class="co-section-title" style="margin-top:8px;">Delivery Type</div>
             <div class="delivery-type-row" id="deliveryTypeRow">
               <div class="del-type-btn on" onclick="selDeliveryType(this,'instant')" id="btnInstant">
@@ -3455,7 +3469,7 @@ const TRANS = {
     'shop-notes':'ብሉቤሪ · የደረቀ ቼሪ · ዳርክ ቸኮሌት',
     'mk-origin':'መነሻ','mk-process':'ሂደት','mk-alt':'ከፍታ','mk-variety':'ዝርያ',
     'opt-form':'ዓይነት','opt-grind':'መፍጨት (የተፈጨ)','opt-size':'መጠን',
-    'form-beans':'የቡና ፍሬ','form-powder':'Ground (የተፈጨ)',
+    'form-beans':'የቡና ፍሬ','form-powder':'የተፈጨ ቡና',
     'roast-label':'የቁሌት ደረጃ',
     'roast-note':'በእጅ ያለ: <strong>ሚዲየም ዳርክ</strong> · ሌሎች ሲጠየቁ ከ25 ኪግ ጀምሮ',
     'btn-addcart':'ወደ ዘንቢል ጨምር →','btn-order-tg':'✈ በቴሌግራም ይዘዙ','btn-order-now':'⚡ አሁን ይዘዙ',
@@ -3555,6 +3569,21 @@ function toggleLang(){
 }
 
 function applyLang(){
+  document.documentElement.lang = currentLang==='am' ? 'am' : 'en';
+  const scheduledPrice = document.querySelector('#btnScheduled .del-type-price');
+  if(scheduledPrice) scheduledPrice.textContent = currentLang==='am' ? 'ነፃ 🎁' : 'FREE 🎁';
+  const sumDetail = document.getElementById('sumDetail');
+  if(sumDetail) sumDetail.textContent = cart.size+' · '+formDisplay()+(cart.form==='Powder'?' · '+cart.grind:'');
+  const sumDelivery = document.getElementById('sumDelivery');
+  if(sumDelivery && !coLat) sumDelivery.textContent = currentLang==='am' ? 'ካርታ ላይ አድራሻዎን ይምረጡ' : 'Tap map to set location';
+  const optional = document.getElementById('checkoutOptionsSummary');
+  if(optional) optional.textContent = currentLang==='am' ? 'የደንበኛ መለያ ወይም የአጋር ኮድ (አማራጭ)' : 'Customer ID or partner code (optional)';
+  const back = document.querySelector('#pg-checkout .shop-back');
+  if(back) back.textContent = currentLang==='am' ? '← ወደ መደብሩ ተመለስ' : '← Back to Shop';
+  const cid = document.getElementById('coCustomerId');
+  if(cid) cid.placeholder = currentLang==='am' ? 'የደንበኛ መለያዎን ያስገቡ' : 'Enter your Customer ID';
+  const partner = document.getElementById('coPartnerCode');
+  if(partner) partner.placeholder = currentLang==='am' ? 'የአጋር ኮድ ካለዎት ያስገቡ' : 'Salesperson code, if any';
   const l = currentLang;
   const T = TRANS[l];
   if(!T) return;
@@ -4090,12 +4119,9 @@ function patchSizeBtns(){
       if(prEl) prEl.textContent = 'ETB ' + _LIVE_PRICES[s].toLocaleString();
     }
   });
-  // Patch homepage .price-amount spans
-  document.querySelectorAll('.price-amount').forEach(el => {
-    const t = el.textContent.replace(/[,\s]/g,'');
-    if(t.includes('525')) el.textContent = 'ETB ' + _LIVE_PRICES['250g'].toLocaleString();
-    else if(t.includes('1000')) el.textContent = 'ETB ' + _LIVE_PRICES['500g'].toLocaleString();
-    else if(t.includes('1900')) el.textContent = 'ETB ' + _LIVE_PRICES['1kg'].toLocaleString();
+  document.querySelectorAll('.price-amount[data-size]').forEach(el => {
+    const price = _LIVE_PRICES[el.dataset.size];
+    if(Number.isFinite(price)) el.textContent = (currentLang==='am'?'ብር ':'ETB ') + price.toLocaleString();
   });
 }
 let coLat = null, coLng = null, map = null, destMark = null;
@@ -4142,7 +4168,7 @@ function nav(id, push=true, params={}){
     const totalKg = cart.kg * cart.qty;
     const isFree = totalKg >= FREE_KG;
     const ip = document.getElementById('instantPrice');
-    if(ip) ip.textContent = isFree ? 'FREE 🎁' : 'ETB ' + MIN_FEE + '+';
+    if(ip) ip.textContent = isFree ? (currentLang==='am'?'ነፃ 🎁':'FREE 🎁') : 'ETB ' + MIN_FEE + '+';
     setTimeout(initMap, 100);
     if(telegramWebApp && telegramWebApp.MainButton){
       try{
@@ -4270,7 +4296,7 @@ function displayPrice(price){
 }
 
 function formDisplay(){
-  if(cart.form==='Powder') return currentLang==='am' ? 'Ground (የተፈጨ)' : 'Ground';
+  if(cart.form==='Powder') return currentLang==='am' ? 'የተፈጨ ቡና' : 'Ground';
   return currentLang==='am' ? 'የቡና ፍሬ' : 'Whole Bean';
 }
 
@@ -4287,7 +4313,7 @@ function updateShopChoiceUI(){
   const copy = {
     eye: isAm ? 'ቡና ይግዙ' : 'Shop Coffee',
     title: isAm ? 'የእርስዎን ቡና ይምረጡ።' : 'Choose your coffee first.',
-    sub: isAm ? 'መጠንና ዋጋው ከመጀመሪያው ግልጽ ይታያል። ከዚያ የቡና ፍሬ ወይም Ground (የተፈጨ) ይምረጡ።' : 'Weight and price stay visible first. Then choose Whole Bean or Ground.',
+    sub: isAm ? 'መጠንና ዋጋው ከመጀመሪያው ግልጽ ይታያል። ከዚያ የቡና ፍሬ ወይም የተፈጨ ቡና ይምረጡ።' : 'Weight and price stay visible first. Then choose Whole Bean or Ground.',
     badge: isAm ? 'ትኩስ የተቆላ' : 'Fresh roasted',
     tag250: isAm ? 'ለመጀመሪያ' : 'Starter',
     tag500: isAm ? 'በብዙዎች የተመረጠ' : 'Most popular',
@@ -4298,7 +4324,7 @@ function updateShopChoiceUI(){
     formLabel: isAm ? 'የቡና አይነት ይምረጡ' : 'Choose Coffee Form',
     beansTitle: isAm ? 'የቡና ፍሬ' : 'Whole Bean',
     beansSub: isAm ? 'ሽታውን ይጠብቃል። ትኩስ ፈጭተው ይጠጡ።' : 'Best aroma. Grind fresh.',
-    groundTitle: isAm ? 'Ground (የተፈጨ)' : 'Ground',
+    groundTitle: isAm ? 'የተፈጨ ቡና' : 'Ground',
     groundSub: isAm ? 'ለጀበና፣ ለኤስፕሬሶ ወይም ለፊልተር እንፈጭልዎታለን።' : 'Ground for your brew method.',
     selected: isAm ? 'የተመረጠው' : 'Selected',
     order: isAm ? 'ይዘዙ' : 'Order Now'
@@ -4441,7 +4467,7 @@ function chQty(d){
     const totalKg = cart.kg * cart.qty;
     const isFree = totalKg >= FREE_KG;
     const ip = document.getElementById('instantPrice');
-    if(ip) ip.textContent = isFree ? 'FREE 🎁' : 'ETB ' + (MIN_FEE + '+');
+    if(ip) ip.textContent = isFree ? (currentLang==='am'?'ነፃ 🎁':'FREE 🎁') : 'ETB ' + (MIN_FEE + '+');
   }
 }
 
@@ -4467,6 +4493,7 @@ function updateDeliveryEst(){
 }
 
 function addToCart(){
+  if(!commerceCatalog){ alert(tCommerce('checkout-unavailable')); return; }
   const detail = cart.size+' · '+formDisplay()+(cart.form==='Powder'?' · '+cart.grind:'');
   const el = id => document.getElementById(id);
   const cur = currentLang==='am'?'ብር ':'ETB ';
@@ -4520,7 +4547,8 @@ async function commercePost(path, payload){
     const res = await fetch(commerceUrl(path), {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload || {})
+      body:JSON.stringify(payload || {}),
+      signal:AbortSignal.timeout(20000)
     });
     let data = {};
     try { data = await res.json(); } catch(e) {}
@@ -4537,7 +4565,7 @@ async function commercePost(path, payload){
 
 async function commerceGet(path){
   try{
-    const res = await fetch(commerceUrl(path));
+    const res = await fetch(commerceUrl(path), {signal:AbortSignal.timeout(12000)});
     let data = {};
     try { data = await res.json(); } catch(e) {}
     if(!res.ok || data.ok === false){
@@ -4703,6 +4731,7 @@ function applyPartnerCodeFromUrl(){
 }
 
 async function loadCommerceCatalog(){
+  document.getElementById('catalogRetry').hidden = true;
   try{
     const data = await commerceGet('/api/products');
     commerceCatalog = data.products || [];
@@ -4713,12 +4742,21 @@ async function loadCommerceCatalog(){
       const key = normalizeSizeKey(s.size);
       if(key && s.price) _LIVE_PRICES[key] = Number(s.price);
     });
+    if(!['250g','500g','1kg'].every(size => (guji.sizes || []).some(s => normalizeSizeKey(s.size)===size && Number(s.price)>0))) throw new Error('Incomplete price catalog.');
+    cart.price = _LIVE_PRICES[canonicalSizeKey(cart.size)];
     patchSizeBtns();
     updateShopChoiceUI();
+    document.documentElement.classList.remove('prices-pending');
+    document.getElementById('catalogStatus').hidden = true;
+    updateTotal();
+    refreshCheckoutSummary();
     return commerceCatalog;
   }catch(err){
     commerceCatalog = null;
-    setCommerceStatus('partnerCodeStatus',tCommerce('checkout-unavailable'),'err');
+    document.documentElement.classList.add('prices-pending');
+    document.getElementById('catalogStatus').hidden = false;
+    document.getElementById('catalogStatusText').textContent = currentLang==='am' ? 'ዋጋ መጫን አልተቻለም። እባክዎ እንደገና ይሞክሩ።' : 'Prices could not load. Please retry before ordering.';
+    document.getElementById('catalogRetry').hidden = false;
     return null;
   }
 }
@@ -5175,11 +5213,11 @@ async function calcDelivery(lat,lng){
     if(id('deliveryRow')) id('deliveryRow').style.display='flex';
     if(id('distDisp')) id('distDisp').textContent = distance ? distance.toFixed(1)+' km' : '—';
     if(id('mapHint')) id('mapHint').textContent = distance ? '✓ Location set · '+distance.toFixed(1)+' km from us' : '✓ Location set';
-    const feeLabel = fee === 0 ? (deliveryType === 'scheduled' ? 'FREE 🎁 (48hr)' : 'FREE 🎁') : 'ETB '+Math.round(fee);
+    const feeLabel = fee === 0 ? (deliveryType === 'scheduled' ? (currentLang==='am'?'ነፃ 🎁 (48 ሰዓት)':'FREE 🎁 (48hr)') : (currentLang==='am'?'ነፃ 🎁':'FREE 🎁')) : 'ETB '+Math.round(fee);
     if(id('feeDisp')) id('feeDisp').textContent = feeLabel;
     if(id('sumDelivery')) id('sumDelivery').textContent = fee === 0 ? (deliveryType === 'scheduled' ? 'FREE (48hr)' : 'FREE') : 'ETB '+Math.round(fee);
     const ip = document.getElementById('instantPrice');
-    if(ip && deliveryType === 'instant') ip.textContent = fee === 0 ? 'FREE 🎁' : 'ETB '+Math.round(fee);
+    if(ip && deliveryType === 'instant') ip.textContent = fee === 0 ? (currentLang==='am'?'ነፃ 🎁':'FREE 🎁') : 'ETB '+Math.round(fee);
     refreshCheckoutSummary();
   }catch(err){
     currentDeliveryQuote = null;
@@ -5331,19 +5369,15 @@ async function submitModalForm(e){
   const tg=inputs[3].value.trim(),loc=inputs[4].value.trim(),usage=inputs[5].value;
   const grind=inputs[6].value,roast=inputs[7].value;
   try{
-    await commercePost('/api/orders', {
+    await commercePost('/api/inquiries', {
       customer_name:name,
       phone:normalizePhone(phone),
       customer_type:'Cafe',
-      product:'Cafe Supply Request',
+      inquiry_type:'cafe_supply',
+      cafe_name:cafe,
       coffee_form:(grind||'Not specified')+' · '+(roast||'Medium Dark'),
-      quantity_kg:1,
-      original_unit_price:0,
-      delivery_fee:0,
       delivery_address:loc,
       google_map_url:'',
-      payment_status:'Lead',
-      delivery_status:'New',
       notes:'Cafe: '+cafe+' · Telegram: '+(tg||'—')+' · Weekly usage: '+usage
     });
     e.target.style.display="none";
@@ -5360,19 +5394,15 @@ async function submitCafe(e){
   const tg=inputs[3].value.trim(),loc=inputs[4].value.trim(),usage=inputs[5].value;
   const grind=inputs[6].value,roast=inputs[7].value;
   try{
-    await commercePost('/api/orders', {
+    await commercePost('/api/inquiries', {
       customer_name:name,
       phone:normalizePhone(phone),
       customer_type:'Cafe',
-      product:'Cafe Supply Request',
+      inquiry_type:'cafe_supply',
+      cafe_name:cafe,
       coffee_form:(grind||'Not specified')+' · '+(roast||'Medium Dark'),
-      quantity_kg:1,
-      original_unit_price:0,
-      delivery_fee:0,
       delivery_address:loc,
       google_map_url:'',
-      payment_status:'Lead',
-      delivery_status:'New',
       notes:'Cafe: '+cafe+' · Telegram: '+(tg||'—')+' · Weekly usage: '+usage
     });
     e.target.style.display="none";
@@ -5390,19 +5420,15 @@ async function submitSampleOnly(form){
   const name=inputs[0]?inputs[0].value.trim():"—",cafe=inputs[1]?inputs[1].value.trim():"—";
   const tg=inputs[3]?inputs[3].value.trim():"—",loc=inputs[4]?inputs[4].value.trim():"—";
   try{
-    await commercePost('/api/orders', {
+    await commercePost('/api/inquiries', {
       customer_name:name,
       phone:normalizePhone(phone),
       customer_type:'Cafe',
-      product:'Free Sample Request',
+      inquiry_type:'sample',
+      cafe_name:cafe,
       coffee_form:'Sample',
-      quantity_kg:1,
-      original_unit_price:0,
-      delivery_fee:0,
       delivery_address:loc,
       google_map_url:'',
-      payment_status:'Lead',
-      delivery_status:'New',
       notes:'Cafe: '+cafe+' · Telegram: '+tg+' · Customer wants to try a free sample first.'
     });
     form.style.display="none";
@@ -5451,6 +5477,7 @@ async function submitOrder(e){
     if(!activeBackendFormIds().includes(backendFormId)){
       throw new Error(tCommerce('checkout-unavailable'));
     }
+    if(customerId || partnerCode) document.getElementById('checkoutOptions').open = true;
     if(customerId && !verifiedCustomer) await verifyCustomerId();
     if(customerId && !verifiedCustomer) throw new Error(tCommerce('checkout-verify-customer'));
     if(partnerCode && !partnerCodeRecorded) await validatePartnerCode();
@@ -5545,7 +5572,7 @@ document.getElementById('grindOpts').style.display = 'none';
 
 // ════ ORIGIN GALLERY LIGHTBOX ════
 const ogPhotos = {"farm_cherries_1": "Freshly Picked Cherries \u2014 Guji Zone", "farm_tree_1": "Coffee Trees at Peak Harvest", "farm_tree_2": "Ripe Arabica Cherries on Branch", "farm_cherries_2": "Hand-Selected Ripe Cherries", "station_night": "Night Washing \u2014 The Craft Never Stops", "station_team": "Our Station Team \u00b7 Guji", "station_panorama": "Raised Drying Beds \u2014 Hillside Station", "station_drying_1": "Quality Check at the Drying Bed", "station_drying_2": "Sun-Drying Green Coffee Beans"};
-const ogB64 = {"farm_cherries_1": "images/gallery-farm_cherries_1.jpg", "farm_tree_1": "data:image/jpeg;/images/gallery-farm_tree_1.jpg", "farm_tree_2": "data:image/jpeg;/images/gallery-farm_tree_2.jpg", "farm_cherries_2": "data:image/jpeg;/images/gallery-farm_cherries_2.jpg", "station_night": "data:image/jpeg;/images/gallery-station_night.jpg", "station_team": "data:image/jpeg;/images/gallery-station_team.jpg", "station_panorama": "data:image/jpeg;/images/gallery-station_panorama.jpg", "station_drying_1": "data:image/jpeg;/images/gallery-station_drying_1.jpg", "station_drying_2": "data:image/jpeg;/images/gallery-station_drying_2.jpg"};
+const ogB64 = {"farm_cherries_1": "images/gallery-farm_cherries_1.jpg", "farm_tree_1": "images/gallery-farm_tree_1.jpg", "farm_tree_2": "images/gallery-farm_tree_2.jpg", "farm_cherries_2": "images/gallery-farm_cherries_2.jpg", "station_night": "images/gallery-station_night.jpg", "station_team": "images/gallery-station_team.jpg", "station_panorama": "images/gallery-station_panorama.jpg", "station_drying_1": "images/gallery-station_drying_1.jpg", "station_drying_2": "images/gallery-station_drying_2.jpg"};
 
 function openLightbox(key) {
   const lb = document.getElementById('ogLightbox');
@@ -5633,7 +5660,7 @@ window.addEventListener('load', function(){
     </div>
     <div style="text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--border2);">
       <p style="font-style:italic;color:var(--t2);font-size:.9rem;margin-bottom:14px;">Prefer to message directly?</p>
-      <a href="https://t.me/flipboostcoffee?start=cafe-pricing" target="_blank" class="btn btn-tg btn-sm">✈ Chat on Telegram</a>
+      <a href="https://t.me/+251717174235" target="_blank" class="btn btn-tg btn-sm">✈ Chat on Telegram</a>
     </div>
   </div>
 </div>
@@ -6037,7 +6064,7 @@ function pickQtyNum(n){
   else {
     var totalKg = cart.kg * cart.qty;
     var ip = document.getElementById('instantPrice');
-    if(ip) ip.textContent = totalKg>=FREE_KG ? 'FREE 🎁' : 'ETB '+(MIN_FEE+'+');
+    if(ip) ip.textContent = totalKg>=FREE_KG ? (currentLang==='am'?'ነፃ 🎁':'FREE 🎁') : 'ETB '+(MIN_FEE+'+');
   }
 }
 // Close on backdrop tap

@@ -5614,8 +5614,14 @@ async function submitOrder(e){
   const partnerCode = (document.getElementById('coPartnerCode')?.value || '').trim().toUpperCase();
   if(btn){btn.textContent='Sending…';btn.disabled=true;}
   try{
-    if(!commerceCatalog && !(await loadCommerceCatalog())){
+    const reviewedPrice = Number(cart.price);
+    if(!(await loadCommerceCatalog())){
       throw new Error(tCommerce('checkout-unavailable'));
+    }
+    if(Number(cart.price) !== reviewedPrice){
+      throw new Error(currentLang==='am'
+        ? 'የቡናው ዋጋ ተቀይሯል። አዲሱን ዋጋና ጠቅላላ ሂሳብ ያረጋግጡ፣ ከዚያ እንደገና ይዘዙ።'
+        : 'The coffee price has changed. Review the updated price and total, then place your order again.');
     }
     const backendFormId = selectedBackendFormId();
     if(!activeBackendFormIds().includes(backendFormId)){

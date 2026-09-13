@@ -2486,6 +2486,57 @@ html[lang=am] #pg-home .hero h1{font-family:'Noto Sans Ethiopic',sans-serif!impo
 html[lang=am] .fb-pour-caption{font-family:'Noto Sans Ethiopic',sans-serif;font-size:13px}
 @media(max-width:700px){#pg-home .hero{min-height:0!important}#pg-home .hero-inner{grid-template-columns:1fr!important}.fb-pour-stage{max-width:520px;margin:auto}#pg-home .hero h1{font-size:56px!important}#pg-home .hero-sub{font-size:16px!important}html[lang=am] #pg-home .hero h1{font-size:38px!important}}
 </style>
+
+<style id="fb-sticky-editorial">
+/* One content source for every viewport. Preserve the original photo layers. */
+#priceSec,#journeySec,#farmSec{--story-photo:58%;--story-height:calc(100svh - 72px);--story-top:72px}
+#priceSec .price-sticky,#journeySec .journey-sticky,#farmSec .farm-sticky{
+height:var(--story-height);top:var(--story-top);background:radial-gradient(ellipse at 25% 45%,#4a3020,#20160f 58%,#120d09);isolation:isolate}
+html body #priceSec .pbg,html body #journeySec .journey-bg,html body #farmSec .farm-bg{
+inset:0 auto 0 0;width:var(--story-photo);height:100%;
+background-size:contain!important;background-position:center!important;background-color:transparent!important;
+border-right:1px solid #b7915733}
+#priceSec .price-overlay-grad,#journeySec .journey-overlay,#farmSec .farm-overlay{display:none}
+#priceSec .price-icon-layer,#journeySec .journey-icon-layer,#farmSec .farm-icon-layer{display:none}
+#priceSec .price-content,#journeySec .journey-content,#farmSec .farm-content{
+position:absolute;inset:0 0 0 var(--story-photo);width:auto;height:auto;padding:clamp(24px,4vw,76px);
+display:grid;align-content:center;align-items:center;background:linear-gradient(135deg,#291c13,#100c09)}
+#priceSec .price-slide,#journeySec .journey-slide,#farmSec .farm-slide{
+grid-area:1/1;position:relative;inset:auto;margin:0;visibility:hidden;opacity:0;pointer-events:none;
+transform:translateY(18px);transition:opacity .55s,transform .55s,visibility .55s}
+#priceSec .price-slide.active,#journeySec .journey-slide.active,#farmSec .farm-slide.active{
+visibility:visible;opacity:1;pointer-events:auto;transform:none}
+#priceSec .price-tag,#journeySec .journey-num,#farmSec .farm-section-tag,#farmSec .farm-num{
+font-size:11px;line-height:1.7;letter-spacing:.16em;color:#cda973}
+#priceSec .price-size{font-size:clamp(36px,4.5vw,74px);line-height:1.15;margin:16px 0}
+#priceSec .price-amount{font-size:clamp(22px,2.6vw,38px);line-height:1.3}
+#priceSec .price-tagline{display:block;font-size:clamp(17px,1.5vw,23px);line-height:1.4;margin:22px 0 10px;color:#f1e5d1}
+#priceSec .price-desc,#journeySec .journey-desc{font-size:16px;line-height:1.7;max-width:38ch;color:#c9b9a4;margin:12px 0 24px}
+#priceSec .price-cta{display:inline-flex;align-items:center;min-height:48px;padding:12px 18px;font-size:12px;line-height:1.5;letter-spacing:.08em}
+#journeySec .journey-title,#farmSec .farm-caption{font-size:clamp(28px,3.5vw,54px);line-height:1.2;margin:18px 0}
+#journeySec .journey-sub{font-size:14px;line-height:1.65;color:#d4b586}
+#priceSec .price-dots,#journeySec .journey-dots,#farmSec .farm-dots{
+top:auto;bottom:18px;left:calc(var(--story-photo) + 32px);right:auto;transform:none;flex-direction:row;gap:10px}
+#priceSec .price-dot.on,#journeySec .journey-dot.on,#farmSec .farm-dot.on{height:5px;width:20px}
+.fb-story-facts{font-size:12px;line-height:1.7;color:#bca486;border-top:1px solid #cda97333;padding-top:14px;margin-top:20px}
+@media(max-width:767px){
+#priceSec,#journeySec,#farmSec{--story-photo:clamp(190px,35svh,320px)}
+html body #priceSec .pbg,html body #journeySec .journey-bg,html body #farmSec .farm-bg{
+width:100%;height:var(--story-photo);border-right:0;border-bottom:1px solid #b7915733}
+#priceSec .price-content,#journeySec .journey-content,#farmSec .farm-content{
+inset:var(--story-photo) 0 0;padding:22px 24px 40px;align-content:center}
+#priceSec .price-size{font-size:32px;margin:8px 0}
+#priceSec .price-amount{font-size:23px}
+#priceSec .price-tagline{font-size:18px;margin:12px 0 6px}
+#priceSec .price-desc,#journeySec .journey-desc{font-size:14px;line-height:1.6;margin:8px 0 14px}
+#journeySec .journey-title,#farmSec .farm-caption{font-size:28px;margin:12px 0}
+#priceSec .price-dots,#journeySec .journey-dots,#farmSec .farm-dots{left:24px;bottom:15px}
+.fb-story-facts{margin-top:12px;padding-top:10px}
+}
+@media(prefers-reduced-motion:reduce){
+#priceSec .price-slide,#journeySec .journey-slide,#farmSec .farm-slide{transition:none;transform:none}
+}
+</style>
 </head>
 <body>
 <div id="catalogStatus" class="catalog-status" role="status" aria-live="polite"><span id="catalogStatusText">Loading current prices… / ወቅታዊ ዋጋ እየተጫነ ነው…</span><button type="button" id="catalogRetry" hidden onclick="loadCommerceCatalog()">Retry / እንደገና ሞክር</button></div>
@@ -5891,8 +5942,8 @@ window.addEventListener('scroll', ()=>{
     const space = document.getElementById('priceSpace');
     if(!space) return;
     const rect = space.getBoundingClientRect();
-    const totalScroll = Math.max(1, rect.height - window.innerHeight);
-    const scrolled = Math.max(0, -rect.top);
+    const totalScroll = Math.max(1, rect.height - space.querySelector(".price-sticky").offsetHeight);
+    const scrolled = Math.max(0, parseFloat(getComputedStyle(space.querySelector(".price-sticky")).top) - rect.top);
     const progress = Math.min(1, scrolled / totalScroll);
     
     // Each scene = 1/TOTAL of scroll
@@ -5945,8 +5996,8 @@ window.addEventListener('scroll', ()=>{
     const space = document.getElementById('journeySpace');
     if(!space) return;
     const rect  = space.getBoundingClientRect();
-    const total = Math.max(1, rect.height - window.innerHeight);
-    const scrolled = Math.max(0, -rect.top);
+    const total = Math.max(1, rect.height - space.querySelector(".journey-sticky").offsetHeight);
+    const scrolled = Math.max(0, parseFloat(getComputedStyle(space.querySelector(".journey-sticky")).top) - rect.top);
     const progress = Math.min(1, scrolled / total);
     const idx = Math.min(SCENES-1, Math.floor(progress * SCENES));
 
@@ -5979,8 +6030,8 @@ window.addEventListener('scroll', ()=>{
     const space=document.getElementById('farmSpace');
     if(!space) return;
     const rect=space.getBoundingClientRect();
-    const total=Math.max(1,rect.height-window.innerHeight);
-    const progress=Math.min(1,Math.max(0,-rect.top/total));
+    const total=Math.max(1,rect.height-space.querySelector(".farm-sticky").offsetHeight);
+    const progress=Math.min(1,Math.max(0,(parseFloat(getComputedStyle(space.querySelector(".farm-sticky")).top)-rect.top)/total));
     const idx=Math.min(N-1,Math.floor(progress*N));
     for(let i=0;i<N;i++){
       const bg=document.getElementById('fgbg-'+i);
@@ -6255,6 +6306,34 @@ if('IntersectionObserver' in window){
 }
 pauseLabel();run();
 
+})();
+</script>
+
+<script>
+(function(){
+const stories=[['priceSec','.price-sticky','.price-content','.price-slide'],['journeySec','.journey-sticky','.journey-content','.journey-slide'],['farmSec','.farm-sticky','.farm-content','.farm-slide']];
+let frame;
+function fitStories(){
+stories.forEach(([id,stickySel,contentSel,slideSel])=>{
+const sec=document.getElementById(id),sticky=sec.querySelector(stickySel),content=sec.querySelector(contentSel);
+if(!sticky.offsetWidth)return;
+const mobile=window.innerWidth<768,style=getComputedStyle(content);
+const contentHeight=Math.max(...Array.from(content.querySelectorAll(slideSel),e=>e.scrollHeight))+parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
+const photoHeight=mobile?sec.querySelector('.pbg,.journey-bg,.farm-bg').getBoundingClientRect().height:0;
+const height=Math.ceil(Math.max(window.innerHeight-72,contentHeight+photoHeight));
+sec.style.setProperty('--story-height',height+'px');
+sec.style.setProperty('--story-top',Math.min(72,window.innerHeight-height)+'px');
+});
+}
+function schedule(){cancelAnimationFrame(frame);frame=requestAnimationFrame(fitStories)}
+window.addEventListener('resize',schedule);window.addEventListener('load',schedule);
+new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+stories.forEach(([id,,,slide])=>{
+const observer=new ResizeObserver(schedule);
+document.querySelectorAll('#'+id+' '+slide).forEach(el=>observer.observe(el));
+});
+new MutationObserver(schedule).observe(document.getElementById('pg-home'),{attributes:true,attributeFilter:['class']});
+document.fonts.ready.then(schedule);schedule();
 })();
 </script>
 </body>

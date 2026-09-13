@@ -2537,6 +2537,32 @@ inset:var(--story-photo) 0 0;padding:22px 24px 40px;align-content:center}
 #priceSec .price-slide,#journeySec .journey-slide,#farmSec .farm-slide{transition:none;transform:none}
 }
 </style>
+<style id="fb-sections-style">
+#fb-sections{position:fixed;top:var(--fb-main-bottom,64px);left:0;right:0;z-index:490;display:flex;justify-content:center;align-items:center;gap:30px;min-height:44px;background:#1b130ef5;border-bottom:1px solid #bb955c44;backdrop-filter:blur(16px);color:#ddc49e}
+#fb-sections[hidden]{display:none}
+#fb-sections-links{display:flex;gap:28px}
+#fb-sections a{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#c2b29b;font-size:13px;border-bottom:2px solid transparent}
+#fb-sections a[aria-current]{color:#efc47e;border-color:#efc47e}
+#fb-sections a:hover{color:#fff1d6}
+.fb-sections-label{font-size:10px;letter-spacing:.15em;color:#ac8b5b}
+#fb-sections-toggle{display:none}
+#pg-home{padding-top:44px}
+#priceSec .price-content{padding-bottom:100px}
+#priceSec .price-dots{bottom:70px}
+.fb-origin-next{position:absolute;bottom:0;left:0;right:0;z-index:5;min-height:50px;padding:12px 20px;display:flex;justify-content:center;align-items:center;gap:16px;text-decoration:none;background:#1e160ffa;border-top:1px solid #d8b87c44;color:#ead0a4;font-size:14px;line-height:1.5}
+.fb-origin-next:hover{background:#362517;color:#fff1dc}
+#fb-sections a:focus-visible,#fb-sections-toggle:focus-visible,.fb-origin-next:focus-visible{outline:2px solid #efc47e;outline-offset:-3px}
+@media(max-width:767px){
+#fb-sections{display:block;padding:0 18px}
+#fb-sections-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;height:44px;background:none;border:0;color:#e6c89a;font:inherit;font-size:14px}
+.fb-sections-label{display:none}
+#fb-sections-links{display:none;padding:6px 0 14px}
+#fb-sections.open #fb-sections-links{display:flex;flex-direction:column;gap:0}
+#fb-sections a{padding:5px 12px;border-left:2px solid transparent;border-bottom:0}
+#fb-sections a[aria-current]{border-left-color:#efc47e;background:#c9984420}
+}
+@media(prefers-reduced-motion:no-preference){.fb-next-arrow{animation:fb-next-nudge 2.4s ease-in-out infinite}@keyframes fb-next-nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}}
+</style>
 </head>
 <body>
 <div id="catalogStatus" class="catalog-status" role="status" aria-live="polite"><span id="catalogStatusText">Loading current prices… / ወቅታዊ ዋጋ እየተጫነ ነው…</span><button type="button" id="catalogRetry" hidden onclick="loadCommerceCatalog()">Retry / እንደገና ሞክር</button></div>
@@ -2656,6 +2682,10 @@ inset:var(--story-photo) 0 0;padding:22px 24px 40px;align-content:center}
 </div>
 
 <!-- ════════════ HOME ════════════ -->
+<div id="fb-sections" role="navigation" aria-label="Home page sections">
+<button type="button" id="fb-sections-toggle" aria-expanded="false" aria-controls="fb-sections-links"><span data-motion-en="Explore this page" data-motion-am="የገጹ ክፍሎች">Explore this page</span><span aria-hidden="true">☰</span></button>
+<span class="fb-sections-label" data-motion-en="EXPLORE" data-motion-am="ይመልከቱ">EXPLORE</span>
+<div id="fb-sections-links"><a href="#priceSec" data-section="priceSec" data-motion-en="Coffee & prices" data-motion-am="ቡናና ዋጋ">Coffee & prices</a><a href="#journeySec" data-section="journeySec" data-motion-en="Coffee origin" data-motion-am="የቡናው መነሻ">Coffee origin</a><a href="#farmSec" data-section="farmSec" data-motion-en="Farm & processing" data-motion-am="እርሻና ማቀነባበሪያ">Farm & processing</a></div></div>
 <div class="pg on" id="pg-home">
 
   <!-- HERO -->
@@ -2748,6 +2778,7 @@ inset:var(--story-photo) 0 0;padding:22px 24px 40px;align-content:center}
 
   <div class="price-scroll-space" id="priceSpace">
     <div class="price-sticky">
+<a class="fb-origin-next" href="#journeySec" data-section="journeySec"><span data-motion-en="Discover where your coffee begins" data-motion-am="የቡናችንን መነሻ ይወቁ">Discover where your coffee begins</span><span class="fb-next-arrow" aria-hidden="true">↓</span></a>
       <div class="pbg show" id="pbg-250g-front" style="background-image:url('images/price-250g-front.jpg')"></div>
       <div class="pbg" id="pbg-250g-back" style="background-image:url('images/price-250g-back.jpg')"></div>
       <div class="pbg" id="pbg-500g-front" style="background-image:url('images/price-500g-front.jpg')"></div>
@@ -5553,6 +5584,7 @@ async function submitSampleOnly(form){
 
 async function submitOrder(e){
   e.preventDefault();
+  if(document.getElementById("placeOrderBtn")?.disabled) return;
   if(!coLat){alert('Please select your delivery location on the map.');return;}
 
   const phoneInput = document.getElementById('coPhone');
@@ -5959,7 +5991,7 @@ window.addEventListener('scroll', ()=>{
       if(i === sceneIdx){
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
-      } else if(i === sceneIdx + 1 && i % 2 === 1){
+      } else if(i === sceneIdx + 1 && i % 2 === 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
         // Next is a "back" image — slide up from bottom based on current progress
         const translatePct = (1 - sceneProgress) * 100;
         el.style.opacity = sceneProgress > 0.05 ? '1' : '0';
@@ -6085,7 +6117,7 @@ document.addEventListener('click', e=>{
 
 
 <script>
-window.addEventListener('load', function(){
+document.addEventListener('DOMContentLoaded', function(){
   fetchLivePrices().then(function(){ patchSizeBtns(); });
   try {
     if(document.getElementById('pg-shop')) {
@@ -6320,9 +6352,9 @@ if(!sticky.offsetWidth)return;
 const mobile=window.innerWidth<768,style=getComputedStyle(content);
 const contentHeight=Math.max(...Array.from(content.querySelectorAll(slideSel),e=>e.scrollHeight))+parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
 const photoHeight=mobile?sec.querySelector('.pbg,.journey-bg,.farm-bg').getBoundingClientRect().height:0;
-const height=Math.ceil(Math.max(window.innerHeight-72,contentHeight+photoHeight));
+const height=Math.ceil(Math.max(window.innerHeight-(window.fbStoryOffset||116),contentHeight+photoHeight));
 sec.style.setProperty('--story-height',height+'px');
-sec.style.setProperty('--story-top',Math.min(72,window.innerHeight-height)+'px');
+sec.style.setProperty('--story-top',Math.min(window.fbStoryOffset||116,window.innerHeight-height)+'px');
 });
 }
 function schedule(){cancelAnimationFrame(frame);frame=requestAnimationFrame(fitStories)}
@@ -6334,6 +6366,39 @@ document.querySelectorAll('#'+id+' '+slide).forEach(el=>observer.observe(el));
 });
 new MutationObserver(schedule).observe(document.getElementById('pg-home'),{attributes:true,attributeFilter:['class']});
 document.fonts.ready.then(schedule);schedule();
+})();
+</script>
+<script>
+(function(){
+const bar=document.getElementById('fb-sections'),toggle=document.getElementById('fb-sections-toggle'),home=document.getElementById('pg-home');
+const links=Array.from(bar.querySelectorAll('[data-section]'));
+function close(){bar.classList.remove('open');toggle.setAttribute('aria-expanded','false')}
+toggle.addEventListener('click',()=>{const open=bar.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
+bar.addEventListener('keydown',e=>{if(e.key==='Escape'){close();toggle.focus()}});
+document.addEventListener('click',e=>{if(!bar.contains(e.target))close()});
+function layout(){
+const main=document.querySelector('body > nav');
+const bottom=main?main.getBoundingClientRect().bottom:64;
+document.documentElement.style.setProperty('--fb-main-bottom',bottom+'px');
+window.fbStoryOffset=bottom+44+8;
+bar.hidden=!home.classList.contains('on');if(bar.hidden)close();
+}
+function go(e){const link=e.target.closest('[data-section]');if(!link)return;
+const target=document.getElementById(link.dataset.section);if(!target)return;e.preventDefault();close();layout();
+target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
+window.scrollTo({top:Math.max(0,window.scrollY+target.getBoundingClientRect().top-window.fbStoryOffset),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+}
+bar.addEventListener('click',go);document.querySelector('.fb-origin-next').addEventListener('click',go);
+function active(){
+let current=null;
+links.forEach(link=>{if(document.getElementById(link.dataset.section).getBoundingClientRect().top<=(window.fbStoryOffset||116)+80)current=link});
+links.forEach(link=>{if(link===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});
+}
+let queued=false;
+window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;active()})}},{passive:true});
+window.addEventListener('resize',()=>{layout();active();if(innerWidth>=768)close()});
+new MutationObserver(()=>{layout();active()}).observe(home,{attributes:true,attributeFilter:['class']});
+layout();active();
 })();
 </script>
 </body>

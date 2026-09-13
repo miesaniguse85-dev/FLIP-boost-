@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>FLIP BOOST · Pour study</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&family=Noto+Sans+Ethiopic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#0c0b08;color:#eee6d7;font:14px Manrope,'Noto Sans Ethiopic',sans-serif}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:2px solid #e3bd75;outline-offset:5px}
+.note{padding:9px 20px;background:#292215;color:#d7bb87;text-align:center;font-size:11px;letter-spacing:.05em}
+header{max-width:1360px;margin:auto;padding:24px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;gap:20px}.brand{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.2em;color:#e5c084}.brand small{display:block;font:8px Manrope,sans-serif;letter-spacing:.45em;margin-top:6px;color:#ac9c80}
+nav{display:flex;align-items:center;gap:30px;color:#c2b7a3;font-size:12px}.language{border:1px solid #6c5b3f;background:none;color:#e3c895;border-radius:30px;padding:9px 15px}
+.hero{max-width:1360px;margin:auto;display:grid;grid-template-columns:1fr 1.1fr;position:relative;padding:42px 5% 22px;gap:15px;align-items:center;min-height:610px}
+.copy{position:relative;z-index:2;padding:25px 0}.eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.22em;color:#c5a56c;text-transform:uppercase}.eyebrow:before{content:'';height:1px;width:33px;background:#b9975e}
+h1{font-family:'Cormorant Garamond','Noto Sans Ethiopic',serif;font-weight:400;line-height:1.03;font-size:clamp(48px,6.6vw,88px);letter-spacing:-.035em;margin:27px 0 24px}h1 em{font-weight:400;color:#d8b271}h1 .line{display:block}
+.copy p{max-width:350px;color:#b6aa96;font-size:15px;line-height:1.9}.actions{display:flex;align-items:center;gap:23px;flex-wrap:wrap;margin:32px 0 40px}.primary{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;padding:17px 24px;background:#dab67a;color:#17120b;border:0;border-radius:3px;font-size:12px}.secondary{font-size:12px;padding:12px 0;border-bottom:1px solid #7b694a}.origin{font-size:10px;letter-spacing:.14em;color:#847963;display:flex;gap:14px;flex-wrap:wrap}.origin span+span:before{content:'·';margin-right:14px;color:#d1ac6f}
+.stage{position:relative;min-width:0;aspect-ratio:1.04;background:radial-gradient(ellipse at 50% 56%,#3c2c1970,transparent 62%);isolation:isolate}.stage:before{content:'';position:absolute;inset:8%;border:1px solid #b7914c17;border-radius:50%;pointer-events:none}.stage:after{content:'';position:absolute;inset:17%;border:1px solid #b7914c12;border-radius:50%;pointer-events:none}
+canvas{display:block;width:100%;height:100%;position:absolute;inset:0;z-index:1}.stage-label{position:absolute;left:6%;top:8%;font-size:9px;letter-spacing:.18em;color:#88775b;z-index:2}.pause{position:absolute;bottom:3%;right:3%;border:1px solid #78634466;background:#18140de8;color:#c5ad88;padding:10px 14px;border-radius:30px;font-size:10px;z-index:3;min-height:40px}
+.scene-caption{position:absolute;bottom:8%;left:8%;font:italic 18px 'Cormorant Garamond',serif;color:#b6a17a;z-index:2}
+.bridge{max-width:1224px;margin:0 auto;padding:22px 0;border-top:1px solid #ffffff15;border-bottom:1px solid #ffffff15;display:flex;justify-content:space-between;gap:16px;color:#ac9d84;font-size:10px;letter-spacing:.13em}
+.products{max-width:1224px;margin:65px auto 0;padding:0 0 60px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:25px}.section-head h2{font:400 38px 'Cormorant Garamond','Noto Sans Ethiopic',serif;margin:12px 0}.section-head p{color:#a2957f;font-size:12px;max-width:270px;line-height:1.8}
+.bags{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.bag{border:1px solid #d2b88022;border-radius:6px;background:linear-gradient(140deg,#211c13,#100e0a);padding:20px;display:grid;grid-template-columns:100px 1fr;align-items:center;gap:18px;text-align:left;color:#e4d5bc;transition:border-color .25s,background .25s}.bag:hover,.bag[aria-pressed=true]{border-color:#bd9658;background:#292012}.bag img{width:100px;height:140px;object-fit:contain;mix-blend-mode:lighten}.bag strong{font:400 26px 'Cormorant Garamond',serif}.bag small{display:block;margin-top:10px;color:#a79880;font-size:11px;line-height:1.7}.bag .arrow{display:block;margin-top:20px;color:#dab67a}
+.feedback{min-height:26px;color:#d3b17c;font-size:12px;margin-top:18px;line-height:1.8}.cafe{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:34px;border:1px solid #ad8c502a;background:#18140e;margin-top:30px}.cafe h3{font:400 28px 'Cormorant Garamond','Noto Sans Ethiopic',serif;margin:0 0 10px}.cafe p{color:#a89a82;font-size:12px;line-height:1.8;margin:0}.footer{padding:25px 5%;border-top:1px solid #ffffff12;color:#796f5c;font-size:10px;display:flex;justify-content:space-between}
+html[lang=am] h1{font-size:clamp(37px,4.6vw,60px);line-height:1.4}html[lang=am] .eyebrow,html[lang=am] .origin,html[lang=am] .bridge{letter-spacing:0}html[lang=am] h2,html[lang=am] h3{line-height:1.5}
+@media(max-width:800px){header{padding:19px 22px}nav{gap:16px}nav a{display:none}.hero{grid-template-columns:1fr;padding:30px 24px 10px;gap:0;min-height:0}.copy{padding:10px 0 0}h1{font-size:62px;margin:20px 0}.copy p{font-size:14px;max-width:420px}.actions{margin:23px 0 25px}.stage{max-width:520px;width:100%;margin:-5px auto 10px}.bridge{margin:0 24px;flex-wrap:wrap;justify-content:flex-start;gap:20px;font-size:9px}.products{margin:38px 24px 0}.section-head{display:block}.section-head h2{font-size:33px}.bags{gap:10px}.bag{grid-template-columns:1fr;padding:12px;gap:0;text-align:center}.bag img{width:100%;height:135px}.bag strong{font-size:24px}.bag small{font-size:10px;min-height:36px}.bag .arrow{margin:12px 0 3px}.cafe{padding:24px;align-items:start;flex-direction:column}.brand{font-size:19px}.footer{gap:20px;line-height:1.7}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bag{transition:none}}
+</style></head>
+<body>
+<div class="note" data-en="HERO CONCEPT · Animated illustration · Sample only" data-am="የመግቢያ ናሙና · ተንቀሳቃሽ ሥዕል · ለማሳያ ብቻ">HERO CONCEPT · Animated illustration · Sample only</div>
+<header><a class="brand" href="#">FLIP BOOST<small>ETHIOPIAN COFFEE</small></a><nav><a href="#coffee" data-en="Our coffee" data-am="ቡናችን">Our coffee</a><a href="#cafe" data-en="For cafés" data-am="ለካፌዎች">For cafés</a><button class="language" id="language" type="button">አማርኛ</button></nav></header>
+<main><section class="hero">
+<div class="copy"><div class="eyebrow" data-en="GUJI, ETHIOPIA · SINGLE ORIGIN" data-am="ጉጂ፣ ኢትዮጵያ · ከአንድ መነሻ">GUJI, ETHIOPIA · SINGLE ORIGIN</div>
+<h1 id="headline"><span class="line">Take a moment.</span><em>Make it coffee.</em></h1>
+<p data-en="From your first morning cup to a café full of conversation. Find your moment with Guji coffee." data-am="ከጠዋት የመጀመሪያ ስኒ እስከ ካፌዎ የቡና ጊዜ። በጉጂ ቡና ጣዕም ቀንዎን ያጀቡ።">From your first morning cup to a café full of conversation. Find your moment with Guji coffee.</p>
+<div class="actions"><a class="primary" href="#coffee"><span data-en="Find your coffee" data-am="ቡናዎን ይምረጡ">Find your coffee</span><span>↗</span></a><a class="secondary" href="#cafe" data-en="Coffee for your café →" data-am="ለካፌዎ የቡና አቅርቦት →">Coffee for your café →</a></div>
+<div class="origin"><span data-en="GUJI NATURAL" data-am="ጉጂ ናቹራል">GUJI NATURAL</span><span data-en="WHOLE BEAN OR GROUND" data-am="ፍሬ ወይም የተፈጨ">WHOLE BEAN OR GROUND</span></div></div>
+<div class="stage"><div class="stage-label">THE POUR / 01</div><canvas id="pour" role="img" aria-label="Animated illustration of coffee pouring into a ceramic cup, with ripples and rising steam">Coffee pouring into a cup.</canvas><div class="scene-caption" data-en="A slower start. A warmer moment." data-am="ለቡናዎ ትንሽ ጊዜ።">A slower start. A warmer moment.</div><button id="pause" class="pause" type="button" aria-pressed="false">Ⅱ Pause motion</button></div>
+</section>
+<div class="bridge"><span data-en="ETHIOPIAN ORIGIN" data-am="የኢትዮጵያ ቡና">ETHIOPIAN ORIGIN</span><span>250g / 500g / 1kg</span><span data-en="FOR HOME & CAFÉS" data-am="ለቤትና ለካፌ">FOR HOME & CAFÉS</span></div>
+<section class="products" id="coffee"><div class="section-head"><div><span class="eyebrow" data-en="THE COFFEE" data-am="ቡናችን">THE COFFEE</span><h2 data-en="Your bag. Your daily ritual." data-am="የእርስዎ ቡና። ለዕለት ጣዕምዎ።">Your bag. Your daily ritual.</h2></div><p data-en="Choose a size to explore this concept. No checkout or payment in this sample." data-am="ናሙናውን ለማየት መጠን ይምረጡ። እዚህ ትዕዛዝና ክፍያ አይፈጸምም።">Choose a size to explore this concept. No checkout or payment in this sample.</p></div>
+<div class="bags">
+<button class="bag" data-size="250g" aria-pressed="false"><img src="https://cdn.jsdelivr.net/gh/miesaniguse85-dev/FLIP-boost-@8d87622db77e5d20ba87270a535b3dfa2515dfea/images/bag-250g.jpg" alt="FLIP BOOST 250g coffee bag"><span><strong>250g</strong><small data-en="A first taste of Guji" data-am="ለመጀመሪያ ቅምሻ">A first taste of Guji</small><span class="arrow">↗</span></span></button>
+<button class="bag" data-size="500g" aria-pressed="false"><img src="https://cdn.jsdelivr.net/gh/miesaniguse85-dev/FLIP-boost-@8d87622db77e5d20ba87270a535b3dfa2515dfea/images/bag-500g.jpg" alt="FLIP BOOST 500g coffee bag"><span><strong>500g</strong><small data-en="For the everyday cup" data-am="ለዕለት ቡናዎ">For the everyday cup</small><span class="arrow">↗</span></span></button>
+<button class="bag" data-size="1kg" aria-pressed="false"><img src="https://cdn.jsdelivr.net/gh/miesaniguse85-dev/FLIP-boost-@8d87622db77e5d20ba87270a535b3dfa2515dfea/images/bag-1kg.jpg" alt="FLIP BOOST 1kg coffee bag"><span><strong>1kg</strong><small data-en="More to share" data-am="አብረው ለመጠጣት">More to share</small><span class="arrow">↗</span></span></button>
+</div><div class="feedback" id="feedback" aria-live="polite"></div>
+<div class="cafe" id="cafe"><div><h3 data-en="Let's find your house coffee." data-am="ለካፌዎ የሚስማማውን ቡና እንምረጥ።">Let's find your house coffee.</h3><p data-en="Start with a conversation and a sample." data-am="በውይይትና በናሙና ቅምሻ እንጀምር።">Start with a conversation and a sample.</p></div><button id="sample" class="primary" data-en="Explore a sample ↗" data-am="የናሙና ማሳያ ↗">Explore a sample ↗</button></div></section></main>
+<footer class="footer"><span>FLIP BOOST COFFEE</span><span data-en="Concept preview · Existing sticky photo slides are not replaced." data-am="የንድፍ ናሙና · የቀድሞው sticky photo slide አልተተካም።">Concept preview · Existing sticky photo slides are not replaced.</span></footer>
+<script>
+const canvas=document.getElementById('pour'),ctx=canvas.getContext('2d');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let paused=reduced.matches,time=0,last=0,raf=0,lang='en',picked='';
+const pointer={x:0,y:0},target={x:0,y:0};
+function ellipse(x,y,rx,ry,fill){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();}
+function line(points,color,width){ctx.beginPath();ctx.moveTo(points[0],points[1]);ctx.bezierCurveTo(...points.slice(2));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.stroke();}
+function bean(x,y,size,angle,alpha){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.globalAlpha=alpha;let g=ctx.createLinearGradient(-size,0,size,0);g.addColorStop(0,'#281509');g.addColorStop(.35,'#966637');g.addColorStop(.6,'#653e1d');g.addColorStop(1,'#1d1108');ctx.shadowBlur=12;ctx.shadowOffsetY=9;ctx.shadowColor='#0008';ellipse(0,0,size*.64,size,g);ctx.shadowBlur=0;line([0,-size*.82,-size*.35,-size*.1,size*.28,size*.3,0,size*.86],'#291408',size*.12);ctx.restore();}
+function draw(t){
+ const dpr=Math.min(window.devicePixelRatio||1,2),w=canvas.clientWidth,h=canvas.clientHeight;
+ if(!w||!h)return;
+ if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}
+ ctx.setTransform(dpr*w/600,0,0,dpr*h/580,0,0);ctx.clearRect(0,0,600,580);
+ pointer.x+=(target.x-pointer.x)*.05;pointer.y+=(target.y-pointer.y)*.05;
+ ctx.save();ctx.translate(pointer.x*7,pointer.y*4);
+ let light=ctx.createRadialGradient(325,320,10,310,325,255);light.addColorStop(0,'#ab74301c');light.addColorStop(.6,'#6e441912');light.addColorStop(1,'#0000');ellipse(310,330,280,250,light);
+ // Depth-separated beans move in short, slow arcs around the pour.
+ bean(101+Math.sin(t*.5)*7,215+Math.cos(t*.6)*10,16,-.7+t*.03,.75);
+ bean(499+Math.sin(t*.4)*6,315+Math.cos(t*.7)*12,24,.7+Math.sin(t*.3)*.12,1);
+ bean(151+Math.sin(t*.6)*4,443,12,-1,.8);
+ bean(429,462+Math.sin(t*.5)*5,16,1.1,.9);
+ bean(211,91+Math.sin(t*.4)*7,10,.6,.4);
+ // Ground shadow and ceramic saucer.
+ let shadow=ctx.createRadialGradient(319,451,5,319,451,165);shadow.addColorStop(0,'#000a');shadow.addColorStop(1,'#0000');ellipse(319,451,180,45,shadow);
+ let plate=ctx.createLinearGradient(210,410,390,462);plate.addColorStop(0,'#716757');plate.addColorStop(.45,'#dbceb2');plate.addColorStop(1,'#554c3d');ellipse(315,426,130,40,plate);ellipse(315,422,116,31,'#afa38a');ellipse(312,420,91,25,'#827763');
+ // Cup handle behind body.
+ ctx.beginPath();ctx.ellipse(409,363,38,43,-.12,0,Math.PI*2);ctx.strokeStyle='#b1a184';ctx.lineWidth=18;ctx.stroke();ctx.beginPath();ctx.ellipse(410,363,37,42,-.12,-1.4,1.1);ctx.strokeStyle='#e0d3b6';ctx.lineWidth=5;ctx.stroke();
+ // Ceramic vessel.
+ let ceramic=ctx.createLinearGradient(205,330,411,390);ceramic.addColorStop(0,'#948469');ceramic.addColorStop(.22,'#ebdfc5');ceramic.addColorStop(.48,'#d8c8a8');ceramic.addColorStop(.82,'#ac9775');ceramic.addColorStop(1,'#746044');
+ ctx.beginPath();ctx.moveTo(212,313);ctx.bezierCurveTo(214,383,236,430,310,435);ctx.bezierCurveTo(379,435,403,388,408,313);ctx.closePath();ctx.fillStyle=ceramic;ctx.fill();
+ line([230,337,232,377,244,397,258,405],'#f7efd338',4);
+ ellipse(310,313,98,38,'#f0e1c3');ellipse(310,314,88,30,'#5f391c');
+ let coffee=ctx.createRadialGradient(302,308,4,310,314,90);coffee.addColorStop(0,'#ad7739');coffee.addColorStop(.38,'#74431d');coffee.addColorStop(.8,'#3e210f');coffee.addColorStop(1,'#bf8646');ellipse(310,315,85,27,coffee);
+ // Elliptical ripples are clipped inside the cup.
+ ctx.save();ctx.beginPath();ctx.ellipse(310,315,83,26,0,0,Math.PI*2);ctx.clip();
+ for(let i=0;i<5;i++){let phase=(t*.6+i/5)%1;ctx.beginPath();ctx.ellipse(301,313,5+phase*92,2+phase*27,0,0,Math.PI*2);ctx.strokeStyle='rgba(224,176,103,'+((1-phase)*.38)+')';ctx.lineWidth=1.3;ctx.stroke();}
+ ellipse(298,313,12+Math.sin(t*11)*2,4,'#e7b56670');ctx.restore();
+ // Matte kettle, neck and bright rim highlight.
+ ctx.save();ctx.translate(0,Math.sin(t*.7)*2);
+ let metal=ctx.createLinearGradient(411,50,570,195);metal.addColorStop(0,'#615b4f');metal.addColorStop(.17,'#282923');metal.addColorStop(.7,'#10120f');metal.addColorStop(1,'#38372d');
+ ctx.beginPath();ctx.moveTo(441,72);ctx.bezierCurveTo(405,104,402,157,437,177);ctx.bezierCurveTo(469,196,553,187,572,161);ctx.lineTo(557,85);ctx.closePath();ctx.fillStyle=metal;ctx.fill();
+ ellipse(500,77,57,14,'#7b7462');ellipse(500,74,50,10,'#242620');ellipse(502,59,15,7,'#252720');
+ line([437,146,365,156,356,75,303,111],'#292c25',17);line([437,140,369,147,353, seventy(),303,107],'#95856a55',3);
+ // Spout mouth.
+ ellipse(301,115,8,4,'#0c0b07');ctx.restore();
+ // Coffee ribbon: narrow, translucent edges with changing highlights.
+ const wobble=Math.sin(t*8)*1.6;
+ line([301,118,298+wobble,168,306-wobble,244,301,311],'#68360ed0',8);
+ line([299,118,297+wobble,174,302-wobble,253,299,310],'#c18a44c0',3);
+ line([303,122,301+wobble,171,307-wobble,263,303,305],'#e2b56b60',1);
+ for(let i=0;i<6;i++){let p=(t*1.3+i/6)%1;ellipse(301+Math.sin(i*5+t*4)*p*16,313-Math.sin(p*Math.PI)*12,1.4,2,'rgba(204,145,66,'+(1-p)*.55+')');}
+ // Steam curls drift above the drink and fade without obscuring the text.
+ for(let j=0;j<4;j++){const p=(t*.13+j*.25)%1;const x=260+j*29+Math.sin(p*5+j)*12,y=287-p*127;ctx.save();ctx.globalAlpha=Math.sin(p*Math.PI)*.2;ctx.filter='blur(5px)';line([x,y+42,x-24,y+16,x+22,y-12,x+4,y-35],'#ddcfb4',8);ctx.restore();}
+ ctx.restore();
+}
+function seventy(){return 76;}
+function frame(now){if(last)time+=Math.min((now-last)/1000,.05);last=now;draw(time);if(!paused&&!document.hidden)raf=requestAnimationFrame(frame);else{raf=0;last=0;}}
+function run(){if(!paused&&!document.hidden&&!raf)raf=requestAnimationFrame(frame);else draw(time);}
+function pauseLabel(){const b=document.getElementById('pause');b.textContent=lang==='am'?(paused?'▷ እንቅስቃሴ ጀምር':'Ⅱ እንቅስቃሴ አቁም'):(paused?'▷ Play motion':'Ⅱ Pause motion');b.setAttribute('aria-pressed',String(paused));}
+document.getElementById('pause').onclick=()=>{paused=!paused;if(paused){cancelAnimationFrame(raf);raf=0;last=0;}pauseLabel();run();};
+canvas.addEventListener('pointermove',e=>{if(reduced.matches)return;const r=canvas.getBoundingClientRect();target.x=(e.clientX-r.left)/r.width-.5;target.y=(e.clientY-r.top)/r.height-.5;});
+canvas.addEventListener('pointerleave',()=>{target.x=target.y=0;});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else run();});
+new ResizeObserver(()=>draw(time)).observe(canvas);
+reduced.addEventListener('change',e=>{paused=e.matches;cancelAnimationFrame(raf);raf=0;last=0;pauseLabel();run();});
+function feedback(){document.getElementById('feedback').textContent=picked?(lang==='am'?picked+' ተመርጧል። ይህ የመልክ ናሙና ብቻ ነው።':picked+' selected. This is a visual concept, not a live order.'):'';}
+document.querySelectorAll('.bag').forEach(b=>b.onclick=()=>{picked=b.dataset.size;document.querySelectorAll('.bag').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));feedback();});
+document.getElementById('sample').onclick=()=>{document.getElementById('feedback').textContent=lang==='am'?'የናሙና ጥያቄ በሙሉው ድረ ገጽ ላይ ይቀጥላል። አሁን ምንም ጥያቄ አልተላከም።':'Sample requests will use the full site. No request has been sent.';document.getElementById('feedback').scrollIntoView({block:'center'});};
+document.getElementById('language').onclick=()=>{lang=lang==='en'?'am':'en';document.documentElement.lang=lang;document.querySelectorAll('[data-en]').forEach(e=>e.textContent=e.dataset[lang]);document.getElementById('headline').innerHTML=lang==='am'?'<span class="line">ትንሽ ጊዜ ይውሰዱ።</span><em>በቡና ያሳምሩት።</em>':'<span class="line">Take a moment.</span><em>Make it coffee.</em>';document.getElementById('language').textContent=lang==='am'?'English':'አማርኛ';pauseLabel();feedback();};
+pauseLabel();run();
+</script></body></html>

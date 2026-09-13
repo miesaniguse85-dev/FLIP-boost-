@@ -2466,6 +2466,26 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
 @media(prefers-reduced-motion:reduce){.coffee-scene *,.marquee-track,.mtn-layer{animation:none!important}.coffee-steam{opacity:.3}.home-product,.home-product img{transition:none}.motion-toggle{display:none}}
 
 </style>
+<style>
+/* Approved pouring concept, scoped to the homepage hero. */
+#pg-home .hero{background:radial-gradient(ellipse at 77% 50%,#302415 0%,#121009 42%,#0c0b08 78%);min-height:620px!important}
+#pg-home .hero-inner{grid-template-columns:1fr 1.1fr;gap:15px}
+#pg-home .hero h1{font-family:'Cormorant Garamond',serif!important;font-weight:400!important;font-size:clamp(48px,6.6vw,88px)!important;line-height:1.03!important;letter-spacing:-.035em!important}
+#pg-home .hero-sub{font-size:17px!important;line-height:1.85!important;max-width:380px;color:#b6aa96!important}
+#pg-home .hero-btns .btn{border-radius:3px;padding:17px 24px}
+#pg-home .hero-proof{margin-top:30px!important}
+.fb-pour-stage{position:relative;width:100%;aspect-ratio:1.04;min-width:0;isolation:isolate;background:radial-gradient(ellipse at 50% 56%,#3c2c1970,transparent 62%)}
+.fb-pour-stage:before,.fb-pour-stage:after{content:'';position:absolute;inset:8%;border:1px solid #b7914c17;border-radius:50%;pointer-events:none}
+.fb-pour-stage:after{inset:17%;border-color:#b7914c12}
+#fb-pour{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.fb-pour-label{position:absolute;left:6%;top:8%;font:9px 'DM Mono',monospace;letter-spacing:.18em;color:#ab9879;z-index:2}
+.fb-pour-caption{position:absolute;bottom:8%;left:8%;font:italic 18px 'Cormorant Garamond',serif;color:#b6a17a;z-index:2;pointer-events:none}
+.fb-pour-pause{position:absolute;bottom:3%;right:3%;border:1px solid #78634466;background:#18140de8;color:#c5ad88;padding:10px 14px;border-radius:30px;font:11px Arial,sans-serif;z-index:3;min-height:40px;cursor:pointer}
+.fb-pour-pause:focus-visible{outline:2px solid #e3bd75;outline-offset:4px}
+html[lang=am] #pg-home .hero h1{font-family:'Noto Sans Ethiopic',sans-serif!important;font-size:clamp(37px,4.6vw,60px)!important;line-height:1.4!important}
+html[lang=am] .fb-pour-caption{font-family:'Noto Sans Ethiopic',sans-serif;font-size:13px}
+@media(max-width:700px){#pg-home .hero{min-height:0!important}#pg-home .hero-inner{grid-template-columns:1fr!important}.fb-pour-stage{max-width:520px;margin:auto}#pg-home .hero h1{font-size:56px!important}#pg-home .hero-sub{font-size:16px!important}html[lang=am] #pg-home .hero h1{font-size:38px!important}}
+</style>
 </head>
 <body>
 <div id="catalogStatus" class="catalog-status" role="status" aria-live="polite"><span id="catalogStatusText">Loading current prices… / ወቅታዊ ዋጋ እየተጫነ ነው…</span><button type="button" id="catalogRetry" hidden onclick="loadCommerceCatalog()">Retry / እንደገና ሞክር</button></div>
@@ -2618,8 +2638,8 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
     <div class="hero-inner">
       <div class="hero-text fi">
         <div class="hero-tag">✦ Guji Zone · Ethiopia · Single Origin</div>
-        <h1>Built for Cafés.<br><em>Perfect</em> for Home.</h1>
-        <p class="hero-sub">Consistent Guji coffee your customers will notice — every cup, every batch.</p>
+        <h1>Take a moment.<br><em>Make it coffee.</em></h1>
+        <p class="hero-sub">From your first morning cup to a café full of conversation. Find your moment with Guji coffee.</p>
         <div class="hero-btns">
           <button class="btn btn-primary" onclick="openSampleModal()">Request Free Sample →</button>
           <button class="btn btn-outline" onclick="nav('shop')">Shop Coffee</button>
@@ -2631,12 +2651,11 @@ html[data-image-fit-mode="desktop-standard"] .price-sec .auto-fit-bg {
         </div>
       </div>
       <div class="hero-visual fi">
-        <div class="coffee-scene">
-          <div class="coffee-halo" aria-hidden="true"></div>
-          <div class="hero-all-bags"><img src="images/hero-bags.jpg" alt="Flip Boost coffee bags, 250g, 500g and 1kg" class="hero-bags-img"></div>
-          <div class="coffee-bean bean-one" aria-hidden="true"></div><div class="coffee-bean bean-two" aria-hidden="true"></div><div class="coffee-bean bean-three" aria-hidden="true"></div><div class="coffee-bean bean-four" aria-hidden="true"></div><div class="coffee-bean bean-five" aria-hidden="true"></div>
-          <div class="coffee-cup" aria-hidden="true"><i class="coffee-steam"></i><i class="coffee-steam"></i><i class="coffee-steam"></i></div>
-          <button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false" onclick="toggleCoffeeMotion()">Pause motion</button>
+        <div class="fb-pour-stage">
+          <span class="fb-pour-label">THE POUR / 01</span>
+          <canvas id="fb-pour" role="img" aria-label="Animated illustration of coffee pouring into a ceramic cup, with ripples and steam">Coffee pouring into a ceramic cup.</canvas>
+          <span class="fb-pour-caption" data-motion-en="A slower start. A warmer moment." data-motion-am="ለቡናዎ ትንሽ ጊዜ።">A slower start. A warmer moment.</span>
+          <button type="button" class="fb-pour-pause" id="fb-pour-pause" aria-pressed="false">Ⅱ Pause motion</button>
         </div>
       </div>
     </div>
@@ -3349,8 +3368,8 @@ const TRANS = {
     'nav-home':'Home','nav-shop':'Shop','nav-cafe':'For Cafés','nav-cart':'Cart',
     // HERO
     'hero-tag':'✦ Guji Zone · Ethiopia · Single Origin',
-    'hero-h1':'Built for Cafés.<br><em>Perfect</em> for Home.',
-    'hero-sub':'Consistent Guji coffee your customers will notice — every cup, every batch.',
+    'hero-h1':'Take a moment.<br><em>Make it coffee.</em>',
+    'hero-sub':'From your first morning cup to a café full of conversation. Find your moment with Guji coffee.',
     'btn-sample':'Request Free Sample →','btn-shop':'Shop Coffee',
     'stat-0':'2,100+','stat-l0':'MASL Altitude',
     'stat-1':'100%','stat-l1':'Heirloom Arabica',
@@ -3478,8 +3497,8 @@ const TRANS = {
     'nav-home':'ዋና ገጽ','nav-shop':'መደብር','nav-cafe':'ለካፌዎች','nav-cart':'የግዢ ዘንቢል',
     // HERO
     'hero-tag':'✦ ጉጂ ዞን · ኢትዮጵያ · ከአንድ ቦታ የመጣ',
-    'hero-h1':'ለካፌዎች የተሰራ።<br><em>ለቤት ውስጥ ተስማሚ።</em>',
-    'hero-sub':'ደንበኞችዎ የሚያስተውሉት የማይለዋወጥ የጉጂ ቡና — በእያንዳንዱ ሲኒ፣ በእያንዳንዱ ዙር።',
+    'hero-h1':'ትንሽ ጊዜ ይውሰዱ።<br><em>በቡና ያሳምሩት።</em>',
+    'hero-sub':'ከጠዋት የመጀመሪያ ስኒ እስከ ካፌዎ የቡና ጊዜ። በጉጂ ቡና ጣዕም ቀንዎን ያጀቡ።',
     'btn-sample':'ነፃ ናሙና ይጠይቁ →','btn-shop':'ቡና ይግዙ',
     'stat-0':'2,100+','stat-l0':'ከባህር ጠለል በላይ',
     'stat-1':'100%','stat-l1':'የሀገር በቀል አረቢካ',
@@ -6149,11 +6168,94 @@ function pickGateLang(lang){
 
 <script>
 function applyMotionLanguage(){
+  if(window.flipBoostPourLanguage) window.flipBoostPourLanguage();
   document.querySelectorAll('[data-motion-en]').forEach(el=>{el.textContent=currentLang==='am'?el.dataset.motionAm:el.dataset.motionEn;});
   const control=document.getElementById('motionToggle');
   if(control){const paused=document.getElementById('pg-home').classList.contains('motion-paused');control.textContent=currentLang==='am'?(paused?'እንቅስቃሴውን አስቀጥል':'እንቅስቃሴውን አቁም'):(paused?'Play motion':'Pause motion');control.setAttribute('aria-pressed',String(paused));}
 }
 function toggleCoffeeMotion(){document.getElementById('pg-home').classList.toggle('motion-paused');applyMotionLanguage();}
+</script>
+<script>
+(function(){
+
+const canvas=document.getElementById('fb-pour'),ctx=canvas.getContext('2d');
+if(!ctx) return;
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let inView=true;
+let paused=reduced.matches,time=0,last=0,raf=0,lang='en',picked='';
+const pointer={x:0,y:0},target={x:0,y:0};
+function ellipse(x,y,rx,ry,fill){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();}
+function line(points,color,width){ctx.beginPath();ctx.moveTo(points[0],points[1]);ctx.bezierCurveTo(...points.slice(2));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.stroke();}
+function bean(x,y,size,angle,alpha){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.globalAlpha=alpha;let g=ctx.createLinearGradient(-size,0,size,0);g.addColorStop(0,'#281509');g.addColorStop(.35,'#966637');g.addColorStop(.6,'#653e1d');g.addColorStop(1,'#1d1108');ctx.shadowBlur=12;ctx.shadowOffsetY=9;ctx.shadowColor='#0008';ellipse(0,0,size*.64,size,g);ctx.shadowBlur=0;line([0,-size*.82,-size*.35,-size*.1,size*.28,size*.3,0,size*.86],'#291408',size*.12);ctx.restore();}
+function draw(t){
+ const dpr=Math.min(window.devicePixelRatio||1,2),w=canvas.clientWidth,h=canvas.clientHeight;
+ if(!w||!h)return;
+ if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}
+ ctx.setTransform(dpr*w/600,0,0,dpr*h/580,0,0);ctx.clearRect(0,0,600,580);
+ pointer.x+=(target.x-pointer.x)*.05;pointer.y+=(target.y-pointer.y)*.05;
+ ctx.save();ctx.translate(pointer.x*7,pointer.y*4);
+ let light=ctx.createRadialGradient(325,320,10,310,325,255);light.addColorStop(0,'#ab74301c');light.addColorStop(.6,'#6e441912');light.addColorStop(1,'#0000');ellipse(310,330,280,250,light);
+ // Depth-separated beans move in short, slow arcs around the pour.
+ bean(101+Math.sin(t*.5)*7,215+Math.cos(t*.6)*10,16,-.7+t*.03,.75);
+ bean(499+Math.sin(t*.4)*6,315+Math.cos(t*.7)*12,24,.7+Math.sin(t*.3)*.12,1);
+ bean(151+Math.sin(t*.6)*4,443,12,-1,.8);
+ bean(429,462+Math.sin(t*.5)*5,16,1.1,.9);
+ bean(211,91+Math.sin(t*.4)*7,10,.6,.4);
+ // Ground shadow and ceramic saucer.
+ let shadow=ctx.createRadialGradient(319,451,5,319,451,165);shadow.addColorStop(0,'#000a');shadow.addColorStop(1,'#0000');ellipse(319,451,180,45,shadow);
+ let plate=ctx.createLinearGradient(210,410,390,462);plate.addColorStop(0,'#716757');plate.addColorStop(.45,'#dbceb2');plate.addColorStop(1,'#554c3d');ellipse(315,426,130,40,plate);ellipse(315,422,116,31,'#afa38a');ellipse(312,420,91,25,'#827763');
+ // Cup handle behind body.
+ ctx.beginPath();ctx.ellipse(409,363,38,43,-.12,0,Math.PI*2);ctx.strokeStyle='#b1a184';ctx.lineWidth=18;ctx.stroke();ctx.beginPath();ctx.ellipse(410,363,37,42,-.12,-1.4,1.1);ctx.strokeStyle='#e0d3b6';ctx.lineWidth=5;ctx.stroke();
+ // Ceramic vessel.
+ let ceramic=ctx.createLinearGradient(205,330,411,390);ceramic.addColorStop(0,'#948469');ceramic.addColorStop(.22,'#ebdfc5');ceramic.addColorStop(.48,'#d8c8a8');ceramic.addColorStop(.82,'#ac9775');ceramic.addColorStop(1,'#746044');
+ ctx.beginPath();ctx.moveTo(212,313);ctx.bezierCurveTo(214,383,236,430,310,435);ctx.bezierCurveTo(379,435,403,388,408,313);ctx.closePath();ctx.fillStyle=ceramic;ctx.fill();
+ line([230,337,232,377,244,397,258,405],'#f7efd338',4);
+ ellipse(310,313,98,38,'#f0e1c3');ellipse(310,314,88,30,'#5f391c');
+ let coffee=ctx.createRadialGradient(302,308,4,310,314,90);coffee.addColorStop(0,'#ad7739');coffee.addColorStop(.38,'#74431d');coffee.addColorStop(.8,'#3e210f');coffee.addColorStop(1,'#bf8646');ellipse(310,315,85,27,coffee);
+ // Elliptical ripples are clipped inside the cup.
+ ctx.save();ctx.beginPath();ctx.ellipse(310,315,83,26,0,0,Math.PI*2);ctx.clip();
+ for(let i=0;i<5;i++){let phase=(t*.6+i/5)%1;ctx.beginPath();ctx.ellipse(301,313,5+phase*92,2+phase*27,0,0,Math.PI*2);ctx.strokeStyle='rgba(224,176,103,'+((1-phase)*.38)+')';ctx.lineWidth=1.3;ctx.stroke();}
+ ellipse(298,313,12+Math.sin(t*11)*2,4,'#e7b56670');ctx.restore();
+ // Matte kettle, neck and bright rim highlight.
+ ctx.save();ctx.translate(0,Math.sin(t*.7)*2);
+ let metal=ctx.createLinearGradient(411,50,570,195);metal.addColorStop(0,'#615b4f');metal.addColorStop(.17,'#282923');metal.addColorStop(.7,'#10120f');metal.addColorStop(1,'#38372d');
+ ctx.beginPath();ctx.moveTo(441,72);ctx.bezierCurveTo(405,104,402,157,437,177);ctx.bezierCurveTo(469,196,553,187,572,161);ctx.lineTo(557,85);ctx.closePath();ctx.fillStyle=metal;ctx.fill();
+ ellipse(500,77,57,14,'#7b7462');ellipse(500,74,50,10,'#242620');ellipse(502,59,15,7,'#252720');
+ line([437,146,365,156,356,75,303,111],'#292c25',17);line([437,140,369,147,353, seventy(),303,107],'#95856a55',3);
+ // Spout mouth.
+ ellipse(301,115,8,4,'#0c0b07');ctx.restore();
+ // Coffee ribbon: narrow, translucent edges with changing highlights.
+ const wobble=Math.sin(t*8)*1.6;
+ line([301,118,298+wobble,168,306-wobble,244,301,311],'#68360ed0',8);
+ line([299,118,297+wobble,174,302-wobble,253,299,310],'#c18a44c0',3);
+ line([303,122,301+wobble,171,307-wobble,263,303,305],'#e2b56b60',1);
+ for(let i=0;i<6;i++){let p=(t*1.3+i/6)%1;ellipse(301+Math.sin(i*5+t*4)*p*16,313-Math.sin(p*Math.PI)*12,1.4,2,'rgba(204,145,66,'+(1-p)*.55+')');}
+ // Steam curls drift above the drink and fade without obscuring the text.
+ for(let j=0;j<4;j++){const p=(t*.13+j*.25)%1;const x=260+j*29+Math.sin(p*5+j)*12,y=287-p*127;ctx.save();ctx.globalAlpha=Math.sin(p*Math.PI)*.2;ctx.filter='blur(5px)';line([x,y+42,x-24,y+16,x+22,y-12,x+4,y-35],'#ddcfb4',8);ctx.restore();}
+ ctx.restore();
+}
+function seventy(){return 76;}
+function frame(now){if(last)time+=Math.min((now-last)/1000,.05);last=now;draw(time);if(!paused&&!document.hidden&&inView)raf=requestAnimationFrame(frame);else{raf=0;last=0;}}
+function run(){if(!paused&&!document.hidden&&inView&&!raf)raf=requestAnimationFrame(frame);else draw(time);}
+function pauseLabel(){lang=currentLang;const b=document.getElementById('fb-pour-pause');b.textContent=lang==='am'?(paused?'▷ እንቅስቃሴ ጀምር':'Ⅱ እንቅስቃሴ አቁም'):(paused?'▷ Play motion':'Ⅱ Pause motion');b.setAttribute('aria-pressed',String(paused));}
+document.getElementById('fb-pour-pause').onclick=()=>{paused=!paused;if(paused){cancelAnimationFrame(raf);raf=0;last=0;}pauseLabel();run();};
+canvas.addEventListener('pointermove',e=>{if(reduced.matches)return;const r=canvas.getBoundingClientRect();target.x=(e.clientX-r.left)/r.width-.5;target.y=(e.clientY-r.top)/r.height-.5;});
+canvas.addEventListener('pointerleave',()=>{target.x=target.y=0;});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else run();});
+new ResizeObserver(()=>draw(time)).observe(canvas);
+reduced.addEventListener('change',e=>{paused=e.matches;cancelAnimationFrame(raf);raf=0;last=0;pauseLabel();run();});
+
+window.flipBoostPourLanguage=pauseLabel;
+if('IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>{
+   inView=entries[0].isIntersecting;
+   if(!inView){cancelAnimationFrame(raf);raf=0;last=0;}else run();
+ });
+ observer.observe(canvas);
+}
+pauseLabel();run();
+
+})();
 </script>
 </body>
 </html>
